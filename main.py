@@ -23,7 +23,8 @@ def main():
     pg.display.set_caption("Tic-Tac-Toe")
     screen = pg.display.set_mode((800, 800))
     screen.blit(bg, [0, 0])
-    grid = Grid().print_tile_statuses()
+    grid = Grid()
+    grid.print_tile_statuses()
 
     while True:
 
