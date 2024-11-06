@@ -1,5 +1,5 @@
-from .base.base_models import TileStatus, TileLocation, BaseTile
-from .base.base_grid import BaseGrid
+from base.base_models import TileStatus, TileLocation, BaseTile
+from base.base_grid import BaseGrid
 
 class Grid(BaseGrid):
     def __init__(self) -> None:

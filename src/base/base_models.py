@@ -6,6 +6,10 @@ class TileStatus(Enum):
     CIRCLE = 1
     CROSS = 2
 
+class PlayerSymbol(Enum):
+    CIRCLE = 1
+    CROSS = 2
+
 class TileLocation(BaseModel):
     row: int = Field(None, ge=0, le=2)
     column: int = Field(None, ge=0, le=2)
@@ -13,3 +17,7 @@ class TileLocation(BaseModel):
 class BaseTile(BaseModel):
     location: TileLocation
     status: TileStatus
+
+class BasePlayer(BaseModel):
+    symbol: PlayerSymbol
+    has_turn: bool = Field(default=False)
