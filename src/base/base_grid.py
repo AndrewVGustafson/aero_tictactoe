@@ -1,23 +1,12 @@
-from pydantic import BaseModel
-from enum import Enum
-
-class TileStatus(Enum):
-    EMPTY = 0
-    CIRCLE = 1
-    CROSS = 2
-
-class TileLocation(BaseModel):
-    row: int
-    column: int
-
-class BaseTile(BaseModel):
-    location: TileLocation
-    status: TileStatus
+# if __name__ == "base_grid":
+#     from base_models import BaseTile, TileStatus, TileLocation
+# else:
+from .base_models import BaseTile, TileStatus, TileLocation
 
 class BaseGrid:
 
     def __init__(self) -> None:
-        self.tiles: list[list[BaseTile]] = [[None]*3]*3
+        self.tiles: list[list[BaseTile]]
         self._set_tiles()
         self.TILE_STATUS_MAP: dict = {
         0: '_',
@@ -26,13 +15,16 @@ class BaseGrid:
     }
 
     def _set_tiles(self):
+        self.tiles = []
         for row in range(3):
+            row_list = []
             for column in range(3):
                 tile = BaseTile(
                     location = TileLocation(row=row, column=column),
                     status = TileStatus.EMPTY
                 )
-                self.tiles[row][column] = tile
+                row_list.append(tile)
+            self.tiles.append(row_list)
 
     def get_tile_statuses(self) -> list[list]:
         return [[tile.status.name for tile in row] for row in self.tiles]
@@ -40,9 +32,10 @@ class BaseGrid:
     def print_board(self) -> None:
         board_status = [[self.TILE_STATUS_MAP[tile.status.value] for tile in row] for row in self.tiles]
         for row in board_status:
-            print(*row)
+            print(row[0], row[1], row[2])
     
     def print_tile_statuses(self) -> None:
         tile_statuses = self.get_tile_statuses()
         for row in tile_statuses:
             print(*row)
+            

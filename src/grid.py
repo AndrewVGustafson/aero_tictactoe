@@ -1,21 +1,15 @@
-from basemodels import BaseGrid, TileStatus, TileLocation, BaseTile
+from base.base_models import TileStatus, TileLocation, BaseTile
+from base.base_grid import BaseGrid
 
 class Grid(BaseGrid):
     def __init__(self) -> None:
         super().__init__()
 
-        self.set_tile(TileLocation(row=2, column=1), TileStatus.CROSS)
-
-        self.get_tile_statuses()
-
     def set_tile(self, location: TileLocation, status: TileStatus):
-        tile = self.get_tile(location)
+        tile = self.tiles[location.row][location.column]
         tile.status = status
 
     def get_tile(self, location: TileLocation) -> BaseTile:
-        # print(location)
         return self.tiles[location.row][location.column]
-        
 
-grid = Grid()
-grid.print_board()
+a = Grid().print_tile_statuses()
