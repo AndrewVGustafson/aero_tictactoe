@@ -1,9 +1,7 @@
 from grid import Grid
 from base.base_models import PlayerSymbol, TileLocation, TileStatus, BasePlayer
 
-# TODO Fix issue where choosing symbol input: 2 [ENTER] x
-# maybe use a while loop + match statement
-# check other programs to see if that issue exists
+# TODO 
 
 class Player(BasePlayer):
     pass
@@ -16,8 +14,6 @@ class TicTacToe:
 
     def start_game(self) -> None:
         self._setup_players()
-        # self.grid.set_tile(TileLocation(row=0, column=0), TileStatus.CROSS)
-        # self.grid.set_tile(TileLocation(row=0, column=1), TileStatus.CROSS)
         self.grid.print_board()
         self.do_move(self.player1)
         self.do_move(self.player2)
@@ -46,19 +42,20 @@ class TicTacToe:
     def check_win(self) -> PlayerSymbol:
         rows = self.grid.get_rows()
         cols = self.grid.get_columns()
+        diagonals = self.grid.get_diagonals()
 
-        for row in rows:
-            if TileStatus.EMPTY in row:
-                continue
-            if len(set(row)) == 1:
-                winner = self._tile_to_player_symbol(row[0])
+        possible_lines = [rows, cols, diagonals]
+
+        for lines in possible_lines:
+            if winner := self._check_lines(lines):
                 return winner
 
-        for col in cols:
-            if TileStatus.EMPTY in col:
+    def _check_lines(self, lines: list) -> PlayerSymbol:
+        for line in lines:
+            if TileStatus.EMPTY in line:
                 continue
-            if len(set(col)) == 1:
-                winner = self._tile_to_player_symbol(col[0])
+            if len(set(line)) == 1:
+                winner = self._tile_to_player_symbol(line[0])
                 return winner
 
     def _tile_to_player_symbol(self, tile_status: TileStatus) -> PlayerSymbol:

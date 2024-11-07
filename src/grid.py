@@ -21,3 +21,8 @@ class Grid(BaseGrid):
         columns = list(zip(*self.get_tile_statuses()[::-1]))
         columns = [list(col) for col in columns]
         return columns
+    
+    def get_diagonals(self) -> list[list[TileStatus]]:
+        diag_ascending = [tile[~i] for i, tile in enumerate(self.get_tile_statuses())]
+        diag_descending = [tile[i] for i, tile in enumerate(self.get_tile_statuses())]
+        return [diag_descending, diag_ascending]

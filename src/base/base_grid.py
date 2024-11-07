@@ -31,7 +31,7 @@ class BaseGrid:
     def print_board(self) -> None:
         board_status = [[self.TILE_STATUS_MAP[tile.status.value] for tile in row] for row in self.tiles]
         for row in board_status:
-            print(row[0], row[1], row[2])
+            print(row[0], row[1], row[2], sep="|")
     
     def print_tile_statuses(self) -> None:
         tile_statuses = self.get_tile_statuses()
