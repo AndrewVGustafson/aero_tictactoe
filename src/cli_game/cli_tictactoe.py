@@ -1,10 +1,10 @@
 import sys
-sys.path.append('..')
-from base.base_tictactoe import BaseTicTacToe
-from base.base_models import PlayerSymbol, TileLocation, Player
+import os
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-# TODO Move player methods from tictactoe classes into Player class
-# make check_win() return location of win instead of PlayerSymbol
+from base.base_tictactoe import BaseTicTacToe  # noqa: E402
+from base.base_models import PlayerSymbol, TileLocation, Player  # noqa: E402
 
 
 class CLI_TicTacToe(BaseTicTacToe):
@@ -115,4 +115,3 @@ class CLI_TicTacToe(BaseTicTacToe):
             return PlayerSymbol.Cross
         elif symbol == PlayerSymbol.Cross:
             return PlayerSymbol.Circle
-

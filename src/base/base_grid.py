@@ -1,7 +1,6 @@
-from abc import ABC, abstractmethod
 from .base_models import BaseTile, TileStatus, TileLocation
 
-class BaseGrid(ABC):
+class BaseGrid:
     def __init__(self) -> None:
         self.tiles: list[list[BaseTile]]
         self._set_tiles()
@@ -23,7 +22,7 @@ class BaseGrid(ABC):
                 row_list.append(tile)
             self.tiles.append(row_list)
 
-    def get_tile_statuses(self) -> list[list]:
+    def get_tile_statuses(self) -> list[list[TileStatus]]:
         return [[tile.status for tile in row] for row in self.tiles]
 
     def print_board(self) -> None:
