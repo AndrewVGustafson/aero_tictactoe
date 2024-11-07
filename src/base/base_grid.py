@@ -13,7 +13,7 @@ class BaseGrid:
         2: 'X'
     }
 
-    def _set_tiles(self):
+    def _set_tiles(self) -> None:
         self.tiles = []
         for row in range(3):
             row_list = []
@@ -24,6 +24,9 @@ class BaseGrid:
                 )
                 row_list.append(tile)
             self.tiles.append(row_list)
+
+    def reset_grid(self) -> None:
+        self._set_tiles()
 
     def get_tile_statuses(self) -> list[list]:
         return [[tile.status for tile in row] for row in self.tiles]

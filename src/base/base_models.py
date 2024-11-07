@@ -7,6 +7,7 @@ class TileStatus(Enum):
     CROSS = 2
 
 class PlayerSymbol(Enum):
+    NULL = 0
     Circle = 1
     Cross = 2
 
@@ -20,5 +21,6 @@ class BaseTile(BaseModel):
     status: TileStatus
 
 class BasePlayer(BaseModel):
+    num: int = Field(None, ge=1, le=2)
     symbol: PlayerSymbol
     has_turn: bool = Field(default=False)
