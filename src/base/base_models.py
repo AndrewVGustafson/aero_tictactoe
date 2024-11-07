@@ -20,7 +20,8 @@ class BaseTile(BaseModel):
     location: TileLocation
     status: TileStatus
 
-class BasePlayer(BaseModel):
+class Player(BaseModel):
     num: int = Field(None, ge=1, le=2)
     symbol: PlayerSymbol
+    name: str = Field(default=num)
     has_turn: bool = Field(default=False)

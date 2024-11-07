@@ -1,7 +1,7 @@
 import pygame as pg
 from pygame.locals import QUIT
 # from pygame.locals import KEYDOWN, K_ESCAPE
-from src.grid import Grid
+from base.base_grid import BaseGrid
 
 
 # pygame.mouse.set_cursor(*pygame.cursors.ball)
@@ -23,8 +23,8 @@ def main():
     pg.display.set_caption("Tic-Tac-Toe")
     screen = pg.display.set_mode((800, 800))
     screen.blit(bg, [0, 0])
-    grid = Grid()
-    grid.print_tile_statuses()
+    # grid = GameGrid()
+    # grid.print_tile_statuses()
 
     while True:
 
