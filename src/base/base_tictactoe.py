@@ -39,6 +39,17 @@ class BaseTicTacToe(ABC):
         for lines in possible_lines:
             if winner := self._check_lines(lines):
                 return winner
+            
+        if self._check_tie():
+            return PlayerSymbol.NULL
+        
+    def _check_tie(self) -> bool:
+        tiles = self.grid.get_tile_statuses()
+        tiles = tiles[0] + tiles[1] + tiles[2]
+        
+        if TileStatus.EMPTY not in tiles:
+                return True
+        return False
 
     def _check_lines(self, lines: list) -> PlayerSymbol:
         for line in lines:

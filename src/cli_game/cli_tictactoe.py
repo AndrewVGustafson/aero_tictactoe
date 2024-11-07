@@ -21,11 +21,16 @@ class CLI_TicTacToe(BaseTicTacToe):
                 has_won = self.do_move(self.player1)
             elif self.player2.has_turn:
                 has_won = self.do_move(self.player2)
+            else:
+                break
 
         self.grid.reset_grid()
         
     def do_move(self, player: Player) -> bool:
-        if self.check_win():
+        if symbol := self.check_win():
+            if symbol == PlayerSymbol.NULL:
+                print("It's a tie!")
+                return True
             winner = self.opposite_player(player)
             print(f"Player {winner.num}, YOU WIN!")
             return True
