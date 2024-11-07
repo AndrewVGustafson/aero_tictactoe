@@ -4,7 +4,6 @@
 from .base_models import BaseTile, TileStatus, TileLocation
 
 class BaseGrid:
-
     def __init__(self) -> None:
         self.tiles: list[list[BaseTile]]
         self._set_tiles()
@@ -27,7 +26,7 @@ class BaseGrid:
             self.tiles.append(row_list)
 
     def get_tile_statuses(self) -> list[list]:
-        return [[tile.status.name for tile in row] for row in self.tiles]
+        return [[tile.status for tile in row] for row in self.tiles]
     
     def print_board(self) -> None:
         board_status = [[self.TILE_STATUS_MAP[tile.status.value] for tile in row] for row in self.tiles]

@@ -11,3 +11,13 @@ class Grid(BaseGrid):
 
     def get_tile(self, location: TileLocation) -> BaseTile:
         return self.tiles[location.row][location.column]
+    
+    def get_rows(self) -> list[list[TileStatus]]:
+        rows = self.get_tile_statuses()
+        return rows
+
+    def get_columns(self) -> list[list[TileStatus]]:
+        # Rotates board 90deg clockwise
+        columns = list(zip(*self.get_tile_statuses()[::-1]))
+        columns = [list(col) for col in columns]
+        return columns

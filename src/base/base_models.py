@@ -7,12 +7,13 @@ class TileStatus(Enum):
     CROSS = 2
 
 class PlayerSymbol(Enum):
-    CIRCLE = 1
-    CROSS = 2
+    Circle = 1
+    Cross = 2
 
 class TileLocation(BaseModel):
     row: int = Field(None, ge=0, le=2)
     column: int = Field(None, ge=0, le=2)
+
 
 class BaseTile(BaseModel):
     location: TileLocation
