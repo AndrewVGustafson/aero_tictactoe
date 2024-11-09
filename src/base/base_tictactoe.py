@@ -17,9 +17,9 @@ class BaseTicTacToe(ABC):
     def do_move(self):
         pass
     
-    @abstractmethod
-    def get_move(self):
-        pass
+    # @abstractmethod
+    # def get_move(self):
+    #     pass
     
     @abstractmethod
     def setup_game(self):
@@ -79,6 +79,12 @@ class BaseTicTacToe(ABC):
     def is_empty(self, location: TileLocation) -> bool:
         return self.grid.get_tile(location).status == TileStatus.EMPTY
     
+    def opposite_player(self, player: Player) -> Player:
+        if player.num == 1:
+            return self.player2
+        elif player.num == 2:
+            return self.player1
+
     def switch_turns(self) -> None:
         assert self.player1.has_turn != self.player2.has_turn
         if self.player1.has_turn:
@@ -87,9 +93,3 @@ class BaseTicTacToe(ABC):
         elif self.player2.has_turn:
             self.player2.has_turn = False 
             self.player1.has_turn = True
-
-    def opposite_player(self, player: Player) -> Player:
-        if player.num == 1:
-            return self.player2
-        elif player.num == 2:
-            return self.player1

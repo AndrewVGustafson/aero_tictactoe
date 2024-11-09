@@ -21,6 +21,14 @@ class BaseTile(BaseModel):
     status: TileStatus
 
 class Player(BaseModel):
+    """BaseModel for Player class
+
+    Args:
+        num (int): Either 1 or 2
+        symbol (PlayerSymbol):
+        name (str): optional, defaults to num if not initialized
+        has_turn (bool):
+    """    
     num: int = Field(None, ge=1, le=2)
     symbol: PlayerSymbol
     name: str = Field(default=num)
