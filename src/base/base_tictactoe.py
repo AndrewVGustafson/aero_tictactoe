@@ -17,10 +17,6 @@ class BaseTicTacToe(ABC):
     def do_move(self):
         pass
     
-    # @abstractmethod
-    # def get_move(self):
-    #     pass
-    
     @abstractmethod
     def setup_game(self):
         pass
