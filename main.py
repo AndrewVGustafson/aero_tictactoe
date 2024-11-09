@@ -24,18 +24,18 @@ def main():
     pg.rect.Rect.center
     pg.display.set_caption("Tic-Tac-Toe")
     screen = pg.display.set_mode((800, 800))
-    screen.blit(bg, [0, 0])
-    screen.blit(grid.image, [0, 0])
+
 
     while True:
         events = pg.event.get()
-        grid.update(events)
-        # add functionality to remove sprites before drawing over existing ones
-        grid.gametiles.draw(screen)
-        pg.display.update()
         check_if_exiting(events)
+        grid.gametiles.update(events)
 
+        screen.blit(bg, [0, 0])
+        screen.blit(grid.image, [0, 0])
+        grid.gametiles.draw(screen)
 
+        pg.display.update()
 
             
 if __name__ == "__main__":
