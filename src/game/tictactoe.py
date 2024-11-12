@@ -4,6 +4,11 @@ from src.base.base_models import Player, PlayerSymbol, TileLocation
 from src.game.game_grid import GameGrid
 from src.game.game_tile import GameTile
 
+# TODO create background image class
+
+class BackgroundImage(pg.sprite.Sprite):
+    def __init__(self,) -> None:
+        super().__init__()
 
 class TicTacToe(BaseTicTacToe):
     def __init__(self) -> None:
@@ -12,6 +17,7 @@ class TicTacToe(BaseTicTacToe):
         self.grid = GameGrid()
         self.grid.setup_game_tiles(self.on_tile_click)
 
+        self.bg = pg.image.load(r"images\background.png")
 
     def start_game(self):
         self.setup_game()
@@ -65,8 +71,11 @@ class TicTacToe(BaseTicTacToe):
         self.player1 = Player(num=1, symbol=PlayerSymbol.Cross, has_turn=True)
         self.player2 = Player(num=2, symbol=PlayerSymbol.Circle, has_turn=False)
 
-    def update(self, events: list[pg.event.Event]) -> None:
+    def update(self, screen: pg.Surface, events: list[pg.event.Event]) -> None:
         self.grid.gametiles.update(events)
+        screen.blit(self.bg, [0, 0])
+        screen.blit(self.grid.image, [0, 0])
+        self.grid.gametiles.draw(screen)
 
     def reset_game(self):
         self.grid.reset_tiles(self.on_tile_click)
