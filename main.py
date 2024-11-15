@@ -1,5 +1,7 @@
 import pygame as pg
+import pygame_menu
 from pygame.locals import QUIT
+import pygame_menu.themes
 
 from src.game.tictactoe import TicTacToe
 
@@ -21,6 +23,11 @@ def main():
     pg.display.set_caption("Tic-Tac-Toe")
     screen = pg.display.set_mode((800, 800))
     
+    menu = pygame_menu.Menu("test", 800, 800, pygame_menu.themes.THEME_BLUE)
+    menu.add.text_input('', default='John Doe')
+    menu.add.button("aaaaaaa", lambda: print("a"))
+    menu.mainloop(screen)
+
     game = TicTacToe()
     game.start_game()
 
